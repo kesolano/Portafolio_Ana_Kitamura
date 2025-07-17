@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PORTFOLIO ANA KITAMURA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            font-family: Arial, sans-serif;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Contenedor de slides */
+        .slides-container {
+            display: none;
+            flex-direction: row;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            width: 100vw;
+            height: 85vh;
+            box-sizing: border-box;
+            max-width: 100vw;
+        }
+
+        .slides-container.active {
+            display: flex;
+        }
+
+        .slide {
+            flex: 0 0 100vw;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: center;
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .slide img {
+            max-width: 96vw;
+            max-height: 76vh;
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Marcos de iPhone y detalles visuales */
+        .iphone15-frame {
+            position: relative;
+            width: 340px;
+            height: 700px;
+            max-width: 98vw;
+            max-height: 75vh;
+            background: linear-gradient(145deg, #222 0%, #111 100%);
+            border-radius: 56px;
+            box-shadow: 0 0 32px rgba(0, 0, 0, 0.28), 0 2px 16px rgba(0, 0, 0, 0.16);
+            border: 6px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .iphone15-dynamic-island {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 28px;
+            background: #111;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.13);
+            z-index: 2;
+            border: 2px solid #222;
+        }
+
+        .iphone15-power {
+            position: absolute;
+            right: -8px;
+            top: 160px;
+            width: 5px;
+            height: 56px;
+            background: #444;
+            border-radius: 3px;
+            z-index: 3;
+        }
+
+        .iphone15-volume {
+            position: absolute;
+            left: -8px;
+            top: 120px;
+            width: 5px;
+            height: 36px;
+            background: #444;
+            border-radius: 3px;
+            z-index: 3;
+        }
+
+        .iphone15-silence {
+            position: absolute;
+            left: -8px;
+            top: 90px;
+            width: 5px;
+            height: 16px;
+            background: #444;
+            border-radius: 3px;
+            z-index: 3;
+        }
+
+        .iphone15-video-slot {
+            width: 92%;
+            height: 92%;
+            background: #000;
+            border-radius: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .iphone15-video-slot video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+            border-radius: 28px;
+            display: block;
+        }
+
+        .iphone15-frame-horizontal {
+            position: relative;
+            width: 700px;
+            height: 400px;
+            max-width: 98vw;
+            max-height: 70vh;
+            background: linear-gradient(145deg, #222 0%, #111 100%);
+            border-radius: 48px;
+            box-shadow: 0 0 32px rgba(0, 0, 0, 0.28), 0 2px 16px rgba(0, 0, 0, 0.16);
+            border: 6px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .iphone15-dynamic-island-horizontal {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 90px;
+            background: #111;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.13);
+            z-index: 2;
+            border: 2px solid #222;
+        }
+
+        .iphone15-power-horizontal {
+            position: absolute;
+            bottom: -8px;
+            right: 160px;
+            width: 56px;
+            height: 5px;
+            background: #444;
+            border-radius: 3px;
+            z-index: 3;
+        }
+
+        .iphone15-volume-horizontal {
+            position: absolute;
+            left: 120px;
+            top: -8px;
+            width: 36px;
+            height: 5px;
+            background: #444;
+            border-radius: 3px;
+            z-index: 3;
+        }
+
+        .iphone15-silence-horizontal {
+            position: absolute;
+            left: 90px;
+            top: -8px;
+            width: 16px;
+            height: 5px;
+            background: #444;
+            border-radius: 3px;
+            z-index: 3;
+        }
+
+        .iphone15-video-slot-horizontal {
+            width: 92%;
+            height: 90%;
+            background: #000;
+            border-radius: 32px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .iphone15-video-slot-horizontal video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .labels {
+            font-size: 1em;
+            color: #444;
+            margin-top: 16px;
+            text-align: center;
+            max-width: 320px;
+        }
+
+        .language-selector {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 20px;
+        }
+
+        .language-selector button {
+            padding: 12px 28px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 24px;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .language-selector button:hover {
+            background-color: #222;
+        }
+
+        /* Botón para volver al inicio: superpuesto y adaptable */
+        .back-to-welcome-btn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+            width: 80%;
+            max-width: 340px;
+            min-width: 120px;
+            padding: 14px 36px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 24px;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+            opacity: 0.96;
+        }
+
+        .back-to-welcome-btn:hover {
+            background-color: #222;
+        }
+
+        /* Slide de "Algunos de mis trabajos" */
+        .work-intro {
+            text-align: center;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .work-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: normal;
+            color: #222;
+            margin-bottom: 24px;
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+
+        .arrow-anim {
+            margin-top: 16px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow-anim svg {
+            width: 48px;
+            height: 48px;
+            animation: arrow-right-bounce 1.2s infinite;
+        }
+
+        @keyframes arrow-right-bounce {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(18px);
+            }
+        }
+
+        /* RESPONSIVE: en móvil, marcos y videos se ajustan */
+        @media (max-width: 900px) {
+
+            .iphone15-frame,
+            .iphone15-frame-horizontal {
+                width: 96vw !important;
+                height: 220px !important;
+                min-width: 120px;
+                min-height: 120px;
+                max-width: 99vw;
+                max-height: 36vh;
+                border-radius: 18px;
+                border-width: 4px;
+            }
+
+            .iphone15-video-slot,
+            .iphone15-video-slot-horizontal {
+                border-radius: 8px;
+            }
+
+            .iphone15-dynamic-island,
+            .iphone15-dynamic-island-horizontal,
+            .iphone15-power,
+            .iphone15-volume,
+            .iphone15-silence,
+            .iphone15-power-horizontal,
+            .iphone15-volume-horizontal,
+            .iphone15-silence-horizontal {
+                display: none;
+            }
+
+            .work-title {
+                font-size: 1.4em;
+                margin-bottom: 14px;
+            }
+
+            /* Botón adaptativo para móvil */
+            .back-to-welcome-btn {
+                font-size: 1em;
+                padding: 11px 10px;
+                min-width: 90px;
+                max-width: 95vw;
+                width: 92vw;
+                bottom: 4vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div style="height: 40px;"></div>
+    <!-- WELCOME SLIDE CON SELECTOR DE IDIOMA -->
+    <div class="slide" style="position: relative;">
+        <img src="images/imagen1.jpg" alt="Portfolio Cover">
+        <div class="language-selector">
+            <button onclick="selectLanguage('pt')">Português</button>
+            <button onclick="selectLanguage('es')">Español</button>
+            <!-- <button onclick="selectLanguage('en')">English</button> -->
+        </div>
+    </div>
+
+    <!-- PORTUGUÉS -->
+    <div class="slides-container" id="slides-pt">
+        <div class="slide" style="position: relative;">
+            <img src="images/imagen1Portugués.jpg" alt="Image 1" style="display: block;">
+            <div class="arrow-anim"
+                style="position: absolute; top: 50%; left: 79%; transform: translate(-50%, -50%); color: white;">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M12 24h24M36 24l-10-10M36 24l-10 10" stroke="#fff" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+        </div>
+        <div class="slide"><img src="images/imagen2.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="images/imagen3.jpg" alt="Image 3"></div>
+        <!-- Slide de introducción a los trabajos -->
+        <div class="slide">
+            <div class="work-intro">
+                <div class="work-title">Alguns dos meus trabalhos</div>
+                <div class="arrow-anim">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M12 24h24M36 24l-10-10M36 24l-10 10" stroke="#444" stroke-width="4"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide"><img src="images/imagen4.jpg" alt="Image 4"></div>
+        <div class="slide"><img src="images/imagen5.jpg" alt="Image 5"></div>
+        <!-- Video 1 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Pousada do Mar Guaratiba</div>
+            </div>
+        </div>
+        <!-- Video 2 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Icyben</div>
+            </div>
+        </div>
+        <!-- Video 3: horizontal, marco horizontal en desktop, igual a los otros en móvil -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame-horizontal">
+                    <div class="iphone15-dynamic-island-horizontal"></div>
+                    <div class="iphone15-power-horizontal"></div>
+                    <div class="iphone15-volume-horizontal"></div>
+                    <div class="iphone15-silence-horizontal"></div>
+                    <div class="iphone15-video-slot-horizontal">
+                        <video controls>
+                            <source src="videos/video3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Cabaña Luna Escondida</div>
+            </div>
+        </div>
+        <!-- Video 4 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Cabaña Luna Escondida</div>
+            </div>
+            
+        </div>
+        <!-- Video 5 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video5.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: 4_Aventuras Cocorná</div>
+            </div>
+        
+        </div>
+        <div class="slide"><img src="images/imagen6.jpg" alt="Image 6"></div>
+        <div class="slide"><img src="images/imagen7.jpg" alt="Image 7"></div>
+        <!-- Última imagen con botón superpuesto -->
+        <div class="slide" style="display: flex; justify-content: center; align-items: center;">
+            <div style="position: relative; display: inline-block; width: 100%;">
+                <img src="images/imagen8.jpg" alt="Image 8"
+                    style="display: block; border-radius: 24px; max-width: 96vw; max-height: 76vh;">
+                <button class="back-to-welcome-btn" onclick="backToWelcome()">
+                    Voltar ao início
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESPAÑOL -->
+    <div class="slides-container" id="slides-es">
+        <div class="slide" style="position: relative;">
+            <img src="images/imagen1Español.jpg" alt="Image 1" style="display: block;">
+            <div class="arrow-anim"
+                style="position: absolute; top: 50%; left: 79%; transform: translate(-50%, -50%); color: white;">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M12 24h24M36 24l-10-10M36 24l-10 10" stroke="#fff" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+        </div>
+        <div class="slide"><img src="images/imagen2Español.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="images/imagen3Español.jpg" alt="Image 3"></div>
+        <!-- Slide de introducción a los trabajos -->
+        <div class="slide">
+            <div class="work-intro">
+                <div class="work-title">Algunos de mis trabajos</div>
+                <div class="arrow-anim">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M12 24h24M36 24l-10-10M36 24l-10 10" stroke="#444" stroke-width="4"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="slide"><img src="images/imagen4.jpg" alt="Image 4"></div>
+        <div class="slide"><img src="images/imagen5.jpg" alt="Image 5"></div>
+        <!-- Video 1 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Pousada do Mar Guaratiba</div>
+            </div>
+        </div>
+        <!-- Video 2 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Icyben</div>
+            </div>
+        </div>
+        <!-- Video 3: horizontal, marco horizontal en desktop, igual a los otros en móvil -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame-horizontal">
+                    <div class="iphone15-dynamic-island-horizontal"></div>
+                    <div class="iphone15-power-horizontal"></div>
+                    <div class="iphone15-volume-horizontal"></div>
+                    <div class="iphone15-silence-horizontal"></div>
+                    <div class="iphone15-video-slot-horizontal">
+                        <video controls>
+                            <source src="videos/video3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Cabaña Luna Escondida</div>
+            </div>
+        </div>
+        <!-- Video 4 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: Cabaña Luna Escondida</div>
+            </div>
+        </div>
+        <!-- Video 5 -->
+        <div class="slide">
+            <div>
+                <div class="iphone15-frame">
+                    <div class="iphone15-dynamic-island"></div>
+                    <div class="iphone15-power"></div>
+                    <div class="iphone15-volume"></div>
+                    <div class="iphone15-silence"></div>
+                    <div class="iphone15-video-slot">
+                        <video controls>
+                            <source src="videos/video5.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="labels">Cliente: 4_Aventuras Cocorná</div>
+            </div>
+        
+        </div>
+        <div class="slide"><img src="images/Imagen6Español.jpg" alt="Image 6"></div>
+        <div class="slide"><img src="images/imagen7Español.jpg" alt="Image 7"></div>
+        <!-- Última imagen con botón superpuesto -->
+        <div class="slide" style="display: flex; justify-content: center; align-items: center;">
+            <div style="position: relative; display: inline-block; width: 100%;">
+                <img src="images/imagen8Español.jpg" alt="Image 8"
+                    style="display: block; border-radius: 24px; max-width: 96vw; max-height: 76vh;">
+                <button class="back-to-welcome-btn" onclick="backToWelcome()">
+                    Volver al inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INGLÉS (opcional, descomenta si lo necesitas) -->
+    <!--
+    <div class="slides-container" id="slides-en">
+        ...
+        <div class="slide" style="display: flex; justify-content: center; align-items: center;">
+            <div style="position: relative; display: inline-block; width: 100%;">
+                <img src="images/imagen8English.jpg" alt="Image 8"
+                    style="display: block; border-radius: 24px; max-width: 96vw; max-height: 76vh;">
+                <button class="back-to-welcome-btn" onclick="backToWelcome()">
+                    Back to start
+                </button>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <script>
+        // Selector de idioma: muestra el contenedor correspondiente y oculta la portada
+        function selectLanguage(lang) {
+            document.querySelectorAll('.slides-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            document.getElementById('slides-' + lang).classList.add('active');
+            document.querySelector('.slide').style.display = 'none';
+        }
+
+        // Función para volver a la portada de selección de idioma
+        function backToWelcome() {
+            document.querySelectorAll('.slides-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            document.querySelector('.slide').style.display = 'flex';
+        }
+    </script>
+</body>
+
+</html>
