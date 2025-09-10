@@ -33,7 +33,7 @@
             display: block;
         }
 
-        /* Cada slide ocupa el 100% del ancho y auto height */
+        /* Cada slide */
         .slide {
             scroll-snap-align: start;
             margin-bottom: 2rem;
@@ -48,7 +48,7 @@
             border-radius: 24px;
             object-fit: contain;
             display: block;
-            justify-content: center;
+            margin: 0 auto;
         }
 
         /* Estilos para textos y títulos */
@@ -87,9 +87,57 @@
             display: block;
         }
 
+        /* ============ VERSIÓN MÓVIL ============ */
         @media (max-width: 600px) {
+
+            .slides-container {
+                padding: 0;
+                height: 100vh;
+                scroll-snap-type: y mandatory;
+                overflow-y: scroll;
+            }
+
+            .slide {
+                height: 90vh;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .slide img {
+                width: 100%;
+                height: auto;
+                border-radius: 16px;
+            }
+
             video {
                 width: 100%;
+                border-radius: 16px;
+            }
+
+            .work-title {
+                font-size: 1.6em;
+                padding: 0 10px;
+                text-align: center;
+            }
+
+            .labels {
+                font-size: 0.9em;
+                padding: 0 10px;
+            }
+
+            .back-to-welcome-btn {
+                width: 80%;
+                margin-top: 20px;
+            }
+
+            /* Pantalla de selección de idioma ocupa todo el alto */
+            .slide.language-select {
+                height: 100vh;
+                padding: 0;
             }
         }
 
@@ -157,6 +205,7 @@
         <div class="language-selector">
             <button onclick="selectLanguage('pt')">Português</button>
             <button onclick="selectLanguage('es')">Español</button>
+            <button onclick="selectLanguage('en')">English</button>
         </div>
     </div>
 
@@ -319,6 +368,87 @@
         <div class="slide">
             <img src="images/imagen8Español.jpg" alt="Imagen 8 Español" />
             <button class="back-to-welcome-btn" onclick="backToWelcome()">Volver al inicio</button>
+        </div>
+    </div>
+
+    <!-- Inglés -->
+    <div class="slides-container" id="slides-en">
+        <div class="slide">
+            <img src="images/imagen1English.jpg" alt="Image 1 English" />
+        </div>
+        <div class="slide">
+            <img src="images/imagen2English.jpg" alt="Image 2 English" />
+        </div>
+        <div class="slide">
+            <img src="images/imagen3English.jpg" alt="Image 3 English" />
+        </div>
+        <div class="slide">
+            <div class="work-title">Some of my works</div>
+        </div>
+        <div class="slide">
+            <img src="images/imagen4English.jpg" alt="Image 4 English" />
+        </div>
+        <div class="slide">
+            <img src="images/imagen5English.jpg" alt="Image 5 English" />
+        </div>
+        <!-- English Videos -->
+        <div class="slide">
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/video1.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="labels">Client: 4 Aventuras Cocorná</div>
+        </div>
+        <div class="slide">
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/video2.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="labels">Client: La Chorrera</div>
+        </div>
+        <div class="slide">
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/video3.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="labels">Client: Cabaña Luna Escondida</div>
+        </div>
+        <div class="slide">
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/video4.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="labels">Client: Cabaña Luna Escondida</div>
+        </div>
+        <div class="slide">
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/video5.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="labels">Client: Pousada do Mar Guaratiba</div>
+        </div>
+        <div class="slide">
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/video6.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="labels">Client: Icyben</div>
+        </div>
+        <div class="slide">
+            <img src="images/imagen6English.jpg" alt="Image 6 English" />
+        </div>
+        <div class="slide">
+            <img src="images/imagen7English.jpg" alt="Image 7 English" />
+        </div>
+        <div class="slide">
+            <img src="images/imagen8English.jpg" alt="Image 8 English" />
+            <button class="back-to-welcome-btn" onclick="backToWelcome()">Back to start</button>
         </div>
     </div>
 
