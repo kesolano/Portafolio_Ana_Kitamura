@@ -145,7 +145,6 @@
             background-color: #222;
         }
 
-        /* SOLO PARA MOVIL */
         @media (max-width: 600px) {
             .slide.language-select {
                 height: 100vh;
@@ -190,20 +189,20 @@
                 box-sizing: border-box;
             }
 
-            /* Imagen GRANDE y CENTRADA como video */
+            /* Imagen sin cortes, centrada y completa */
             .slide img {
-                width: 92vw;
-                max-width: 92vw;
-                height: 54vh;
+                width: 90vw;
+                max-width: 90vw;
+                max-height: 60vh;
                 border-radius: 16px;
+                object-fit: contain;
                 display: block;
-                object-fit: cover;
                 margin: 0 auto;
             }
 
             video {
-                width: 92vw;
-                max-width: 92vw;
+                width: 90vw;
+                max-width: 90vw;
                 border-radius: 16px;
                 display: block;
                 margin: 0 auto;
@@ -239,7 +238,6 @@
                         <button onclick="selectLanguage('en')">English</button>
                     </div>
             </div>
-        <!-- Portugués -->
         <div class="slides-container" id="slides-pt">
                 <div class="slide">
                         <img src="images/imagen1.jpg" alt="Imagen 1 Portugués" />
@@ -330,7 +328,6 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Voltar ao início</button>
                     </div>
             </div>
-        <!-- Español -->
         <div class="slides-container" id="slides-es">
                 <div class="slide">
                         <img src="images/imagen1.jpg" alt="Imagen 1 Español" />
@@ -421,7 +418,6 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Volver al inicio</button>
                     </div>
             </div>
-        <!-- Inglés -->
         <div class="slides-container" id="slides-en">
                 <div class="slide">
                         <img src="images/imagen1English.jpg" alt="Image 1 English" />
