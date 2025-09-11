@@ -56,7 +56,7 @@
             background-color: #222;
         }
 
-        /* Contenedores de idiomas ocultos excepto el activo */
+        /* Contenedor de slides ocultos por defecto excepto el activo */
         .slides-container {
             display: none;
             width: 100vw;
@@ -83,7 +83,7 @@
             box-sizing: border-box;
         }
 
-        /* Imagenes estilo */
+        /* Imagenes estilo escritorio */
         .slide img {
             width: 95%;
             height: auto;
@@ -149,6 +149,8 @@
 
         /* ============ VERSIÓN MÓVIL ============ */
         @media (max-width: 600px) {
+
+            /* Selector de idioma: layout móvil */
             .slide.language-select {
                 height: 100vh;
                 width: 100vw;
@@ -169,10 +171,12 @@
                 width: 100%;
                 padding: 12px 0;
                 font-size: 1.1em;
+                border-radius: 18px;
             }
 
+            /* Slides container móvil */
             .slides-container {
-                padding: 0 5vw;
+                padding: 0 0vw;
                 height: 100vh;
                 scroll-snap-type: y mandatory;
                 overflow-y: scroll;
@@ -181,42 +185,56 @@
                 transition: opacity 0.5s ease;
             }
 
+            /* Slides centrados en móvil */
             .slide {
-                height: 110vh;
+                height: 100vh;
                 margin: 0;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                /* CENTRAR vertical */
                 align-items: center;
-                padding: 10px;
+                padding: 0;
                 box-sizing: border-box;
             }
 
+            /* Imágenes igual a videos móvil */
             .slide img {
-                width: 100%;
+                width: 94vw;
+                max-width: 94vw;
                 height: auto;
                 border-radius: 16px;
+                display: block;
+                object-fit: contain;
+                margin: 0 auto;
             }
 
+            /* Videos móvil */
             video {
-                width: 100%;
+                width: 94vw;
+                max-width: 94vw;
                 border-radius: 16px;
+                display: block;
+                margin: 0 auto;
             }
 
             .work-title {
-                font-size: 1.6em;
-                padding: 0 10px;
+                font-size: 1.45em;
+                padding: 0 8px;
                 text-align: center;
             }
 
             .labels {
-                font-size: 0.9em;
+                font-size: 0.98em;
                 padding: 0 10px;
             }
 
             .back-to-welcome-btn {
                 width: 80%;
                 margin-top: 20px;
+                font-size: 1em;
+                border-radius: 18px;
+                padding: 12px 0;
             }
         }
     </style>
@@ -510,7 +528,6 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Back to start</button>
                     </div>
             </div>
-
        
     <script>
         // Al iniciar, muestra solo selector de idioma con imagen de fondo
