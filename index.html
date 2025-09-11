@@ -81,9 +81,6 @@
             margin-bottom: 2rem;
             border-radius: 24px;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         /* Imagenes estilo */
@@ -156,7 +153,6 @@
                 height: 100vh;
                 width: 100vw;
                 padding: 0;
-                /* Centrar imagen y ajustar alto con un overlay */
                 justify-content: flex-end;
                 background-size: cover;
                 background-position: center;
@@ -164,20 +160,19 @@
 
             .language-selector {
                 flex-direction: column;
-                gap: 10px;
-                width: 72%;
-                margin-bottom: 28px;
+                gap: 16px;
+                width: 90%;
+                margin-bottom: 38px;
             }
 
             .language-selector button {
                 width: 100%;
-                padding: 8px 0;
-                font-size: 1em;
-                border-radius: 18px;
+                padding: 12px 0;
+                font-size: 1.1em;
             }
 
             .slides-container {
-                padding: 0 0vw;
+                padding: 0 5vw;
                 height: 100vh;
                 scroll-snap-type: y mandatory;
                 overflow-y: scroll;
@@ -187,46 +182,41 @@
             }
 
             .slide {
-                height: 92vh;
+                height: 110vh;
                 margin: 0;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                padding: 0;
+                padding: 10px;
                 box-sizing: border-box;
             }
 
             .slide img {
-                width: 94vw;
-                max-width: 94vw;
+                width: 100%;
                 height: auto;
-                border-radius: 18px;
+                border-radius: 16px;
             }
 
             video {
-                width: 94vw;
-                max-width: 94vw;
+                width: 100%;
                 border-radius: 16px;
             }
 
             .work-title {
-                font-size: 1.45em;
-                padding: 0 8px;
+                font-size: 1.6em;
+                padding: 0 10px;
                 text-align: center;
             }
 
             .labels {
-                font-size: 0.98em;
+                font-size: 0.9em;
                 padding: 0 10px;
             }
 
             .back-to-welcome-btn {
                 width: 80%;
                 margin-top: 20px;
-                font-size: 1em;
-                border-radius: 18px;
-                padding: 12px 0;
             }
         }
     </style>
@@ -241,6 +231,7 @@
                         <button onclick="selectLanguage('en')">English</button>
                     </div>
             </div>
+
         <!-- Portugués -->
         <div class="slides-container" id="slides-pt">
                 <div class="slide">
@@ -333,6 +324,7 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Voltar ao início</button>
                     </div>
             </div>
+
         <!-- Español -->
         <div class="slides-container" id="slides-es">
                 <div class="slide">
@@ -425,6 +417,7 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Volver al inicio</button>
                     </div>
             </div>
+
         <!-- Inglés -->
         <div class="slides-container" id="slides-en">
                 <div class="slide">
@@ -517,6 +510,7 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Back to start</button>
                     </div>
             </div>
+
        
     <script>
         // Al iniciar, muestra solo selector de idioma con imagen de fondo
