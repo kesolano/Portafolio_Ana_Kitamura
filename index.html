@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* Selector de idioma inicial con imagen de fondo */
         .slide.language-select {
             height: 100vh;
             width: 100vw;
@@ -56,7 +55,6 @@
             background-color: #222;
         }
 
-        /* Contenedor de slides ocultos por defecto excepto el activo */
         .slides-container {
             display: none;
             width: 100vw;
@@ -75,15 +73,16 @@
             opacity: 1;
         }
 
-        /* Cada slide */
         .slide {
             scroll-snap-align: start;
             margin-bottom: 2rem;
             border-radius: 24px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Imagenes estilo escritorio */
         .slide img {
             width: 95%;
             height: auto;
@@ -93,7 +92,6 @@
             margin: 0 auto;
         }
 
-        /* Estilos para textos y títulos */
         .work-title {
             font-family: 'Playfair Display', serif;
             font-size: 2em;
@@ -147,36 +145,32 @@
             background-color: #222;
         }
 
-        /* ============ VERSIÓN MÓVIL ============ */
+        /* SOLO PARA MOVIL */
         @media (max-width: 600px) {
-
-            /* Selector de idioma: layout móvil */
             .slide.language-select {
                 height: 100vh;
                 width: 100vw;
-                padding: 0;
-                justify-content: flex-end;
                 background-size: cover;
                 background-position: center;
+                justify-content: flex-end;
             }
 
             .language-selector {
                 flex-direction: column;
-                gap: 16px;
-                width: 90%;
-                margin-bottom: 38px;
+                gap: 10px;
+                width: 70%;
+                margin-bottom: 32px;
             }
 
             .language-selector button {
                 width: 100%;
-                padding: 12px 0;
-                font-size: 1.1em;
+                padding: 7px 0;
+                font-size: 0.98em;
                 border-radius: 18px;
             }
 
-            /* Slides container móvil */
             .slides-container {
-                padding: 0 0vw;
+                padding: 0;
                 height: 100vh;
                 scroll-snap-type: y mandatory;
                 overflow-y: scroll;
@@ -185,47 +179,44 @@
                 transition: opacity 0.5s ease;
             }
 
-            /* Slides centrados en móvil */
             .slide {
                 height: 100vh;
                 margin: 0;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                /* CENTRAR vertical */
                 align-items: center;
                 padding: 0;
                 box-sizing: border-box;
             }
 
-            /* Imágenes igual a videos móvil */
+            /* Imagen GRANDE y CENTRADA como video */
             .slide img {
-                width: 94vw;
-                max-width: 94vw;
-                height: auto;
+                width: 92vw;
+                max-width: 92vw;
+                height: 54vh;
                 border-radius: 16px;
                 display: block;
-                object-fit: contain;
+                object-fit: cover;
                 margin: 0 auto;
             }
 
-            /* Videos móvil */
             video {
-                width: 94vw;
-                max-width: 94vw;
+                width: 92vw;
+                max-width: 92vw;
                 border-radius: 16px;
                 display: block;
                 margin: 0 auto;
             }
 
             .work-title {
-                font-size: 1.45em;
+                font-size: 1.3em;
                 padding: 0 8px;
                 text-align: center;
             }
 
             .labels {
-                font-size: 0.98em;
+                font-size: 1em;
                 padding: 0 10px;
             }
 
@@ -234,14 +225,13 @@
                 margin-top: 20px;
                 font-size: 1em;
                 border-radius: 18px;
-                padding: 12px 0;
+                padding: 9px 0;
             }
         }
     </style>
 </head>
 
 <body>
-        <!-- Selector de idioma inicial con imagen de fondo y botones abajo -->
         <div class="slide language-select" id="languageSelector">
                 <div class="language-selector">
                         <button onclick="selectLanguage('pt')">Português</button>
@@ -249,7 +239,6 @@
                         <button onclick="selectLanguage('en')">English</button>
                     </div>
             </div>
-
         <!-- Portugués -->
         <div class="slides-container" id="slides-pt">
                 <div class="slide">
@@ -270,7 +259,6 @@
                 <div class="slide">
                         <img src="images/imagen5.jpg" alt="Imagen 5 Portugués" />
                     </div>
-                <!-- Videos Portugués -->
                 <div class="slide">
                         <div class="video-container">
                                 <video controls>
@@ -342,7 +330,6 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Voltar ao início</button>
                     </div>
             </div>
-
         <!-- Español -->
         <div class="slides-container" id="slides-es">
                 <div class="slide">
@@ -363,7 +350,6 @@
                 <div class="slide">
                         <img src="images/imagen5.jpg" alt="Imagen 5 Español" />
                     </div>
-                <!-- Videos Español -->
                 <div class="slide">
                         <div class="video-container">
                                 <video controls>
@@ -435,7 +421,6 @@
                         <button class="back-to-welcome-btn" onclick="backToWelcome()">Volver al inicio</button>
                     </div>
             </div>
-
         <!-- Inglés -->
         <div class="slides-container" id="slides-en">
                 <div class="slide">
@@ -456,7 +441,6 @@
                 <div class="slide">
                         <img src="images/imagen5English.jpg" alt="Image 5 English" />
                     </div>
-                <!-- English Videos -->
                 <div class="slide">
                         <div class="video-container">
                                 <video controls>
@@ -530,7 +514,6 @@
             </div>
        
     <script>
-        // Al iniciar, muestra solo selector de idioma con imagen de fondo
         function selectLanguage(lang) {
             document.getElementById('languageSelector').style.display = 'none';
             document.querySelectorAll('.slides-container').forEach(container => {
@@ -539,7 +522,7 @@
             const selected = document.getElementById('slides-' + lang);
             if (selected) {
                 selected.classList.add('active');
-                selected.scrollTop = 0; // Scroll vertical al inicio
+                selected.scrollTop = 0;
             }
         }
         function backToWelcome() {
