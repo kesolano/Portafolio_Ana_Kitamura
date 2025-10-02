@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
     <style>
-        /* Reset and base styles */
         html,
         body {
             margin: 0;
@@ -18,24 +17,21 @@
             overflow-x: hidden;
         }
 
-        /* Language selector slide */
-        .slide.language-select {
-            height: 100vh;
-            width: 100vw;
+        /* Selector de idioma con imagen y botones arriba */
+        .language-welcome {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            background: url('images/imagen1.jpg') no-repeat center center/cover;
-            position: relative;
+            height: 100vh;
+            width: 100vw;
+            background: #f8f8f8;
         }
 
-        /* Language selector buttons container and buttons */
         .language-selector {
             display: flex;
             gap: 20px;
-            margin-bottom: 40px;
-            position: static;
+            margin-bottom: 28px;
             z-index: 10;
         }
 
@@ -55,37 +51,13 @@
             background-color: #222;
         }
 
-        /* Slides container hidden by default except active */
-        .slides-container {
-            display: none;
-            width: 100vw;
-            max-width: 100vw;
-            box-sizing: border-box;
-            padding: 40px 10vw;
-            overflow-y: auto;
-            height: 90vh;
-            scroll-snap-type: y mandatory;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .slides-container.active {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Each slide styling */
         .slide {
-            scroll-snap-align: start;
-            margin-bottom: 2rem;
-            border-radius: 24px;
-            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
+            border-radius: 24px;
         }
 
-        /* Images general style */
         .slide img {
             width: 95%;
             height: auto;
@@ -95,11 +67,26 @@
             margin: 0 auto;
         }
 
-        /* Text styling */
+        /* Slides containers */
+        .slides-container {
+            display: none;
+            width: 100vw;
+            max-width: 100vw;
+            padding: 40px 10vw;
+            overflow-y: auto;
+            height: 90vh;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .slides-container.active {
+            display: block;
+            opacity: 1;
+        }
+
         .work-title {
             font-family: 'Playfair Display', serif;
             font-size: 2em;
-            font-weight: normal;
             color: #222;
             margin-bottom: 1rem;
             text-align: center;
@@ -116,12 +103,10 @@
             margin-right: auto;
         }
 
-        /* Video container and videos */
         .video-container {
             display: flex;
             justify-content: center;
             width: 100%;
-            /* Full width for flex centering */
         }
 
         video {
@@ -132,7 +117,6 @@
             display: block;
         }
 
-        /* Back to welcome button styles */
         .back-to-welcome-btn {
             width: 90%;
             max-width: 340px;
@@ -153,125 +137,73 @@
             background-color: #222;
         }
 
-        /*
-         * MOBILE SPECIFIC STYLES
-         * ======================
-         */
+        /* Responsivo */
         @media (max-width: 700px) {
-
-            /* Language selector adjustments */
-            .slide.language-select {
-                height: 100vh;
-                width: 100vw;
-                background: url('images/imagen1.jpg') no-repeat center;
-                justify-content: center;
-                /* Center vertically */
-            }
-
             .language-selector {
-                flex-direction: row;
-                /* Horizontal buttons */
                 gap: 12px;
-                width: 85%;
-                margin-bottom: 24px;
+                margin-bottom: 16px;
+                width: 90%;
                 justify-content: center;
-                /* Center horizontally */
             }
 
             .language-selector button {
-                width: auto;
                 padding: 8px 18px;
                 font-size: 1em;
                 border-radius: 18px;
             }
 
-            /* Slides container: full viewport height with vertical scroll */
             .slides-container {
                 padding: 0;
                 height: 100vh;
-                scroll-snap-type: y mandatory;
-                overflow-y: scroll;
                 max-width: 100vw;
-                box-sizing: border-box;
-                transition: opacity 0.5s ease;
             }
 
-            /* Each slide: height smaller to vertically center better (less gap below) */
             .slide {
-                height: 88vh;
-                /* More vertical centering by reducing slide height */
+                height: auto;
                 margin: 0;
-                display: flex;
-                flex-direction: column;
                 justify-content: center;
-                /* Vertical center */
                 align-items: center;
-                padding: 0;
-                box-sizing: border-box;
             }
 
-            /* Images sized to show fully without cropping, side margins set, and max height */
             .slide img {
                 width: 90vw;
                 max-width: 90vw;
                 max-height: 65vh;
-                /* Limits height to keep proportions and avoid overflow */
                 border-radius: 16px;
-                object-fit: contain;
-                display: block;
                 margin: 0 auto;
             }
 
-            /* Videos all sized equal to the first video size on desktop, full width practically with max-width */
             .video-container {
                 width: 90vw;
-                /* Same width constraint as images */
                 max-width: 90vw;
-                justify-content: center;
             }
 
             video {
                 width: 100%;
                 max-width: 100%;
                 border-radius: 16px;
-                display: block;
                 margin: 0 auto;
                 height: auto;
-            }
-
-            .work-title {
-                font-size: 1.3em;
-                padding: 0 8px;
-                text-align: center;
-            }
-
-            .labels {
-                font-size: 1em;
-                padding: 0 10px;
-            }
-
-            .back-to-welcome-btn {
-                width: 80%;
-                margin-top: 20px;
-                font-size: 1em;
-                border-radius: 18px;
-                padding: 9px 0;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Language selector slide -->
-    <div class="slide language-select" id="languageSelector">
+    <!-- Pantalla de bienvenida: Selector de idioma con la imagen abajo -->
+    <div class="language-welcome" id="languageSelector">
         <div class="language-selector">
             <button onclick="selectLanguage('pt')">Português</button>
             <button onclick="selectLanguage('es')">Español</button>
             <button onclick="selectLanguage('en')">English</button>
         </div>
+        <!-- Esto replica el formato de las slides (sólo imagen, para bienvenida) -->
+        <div class="slide">
+            <img src="images/imagen1.jpg" alt="Imagen bienvenida" />
+        </div>
     </div>
 
-    <!-- Portuguese slides -->
+    <!-- Slides en Portugués -->
     <div class="slides-container" id="slides-pt">
         <div class="slide">
             <img src="images/imagen1.jpg" alt="Imagen 1 Portugués" />
@@ -291,7 +223,6 @@
         <div class="slide">
             <img src="images/imagen5.jpg" alt="Imagen 5 Portugués" />
         </div>
-        
         <div class="slide">
             <div class="video-container">
                 <video controls>
@@ -308,7 +239,6 @@
             </div>
             <div class="labels">Cliente: 4 Aventuras Cocorná</div>
         </div>
-       
         <div class="slide">
             <img src="images/imagen6.jpg" alt="Imagen 6 Portugués" />
         </div>
@@ -321,7 +251,7 @@
         </div>
     </div>
 
-    <!-- Spanish slides -->
+    <!-- Slides en Español -->
     <div class="slides-container" id="slides-es">
         <div class="slide">
             <img src="images/imagen1.jpg" alt="Imagen 1 Español" />
@@ -341,7 +271,6 @@
         <div class="slide">
             <img src="images/imagen5.jpg" alt="Imagen 5 Español" />
         </div>
-        
         <div class="slide">
             <div class="video-container">
                 <video controls>
@@ -370,7 +299,7 @@
         </div>
     </div>
 
-    <!-- English slides -->
+    <!-- Slides en Inglés -->
     <div class="slides-container" id="slides-en">
         <div class="slide">
             <img src="images/imagen1English.jpg" alt="Image 1 English" />
@@ -451,7 +380,7 @@
     </div>
 
     <script>
-        // Show only language selector initially and switch slides on selection
+        // Muestra sólo el selector al inicio, y cambia idioma
         function selectLanguage(lang) {
             document.getElementById('languageSelector').style.display = 'none';
             document.querySelectorAll('.slides-container').forEach(container => {
@@ -463,7 +392,7 @@
                 selected.scrollTop = 0;
             }
         }
-        // Back to language selector
+        // Vuelve a pantalla de bienvenida
         function backToWelcome() {
             document.querySelectorAll('.slides-container').forEach(container => {
                 container.classList.remove('active');
