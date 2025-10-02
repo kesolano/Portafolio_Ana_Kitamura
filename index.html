@@ -159,30 +159,29 @@
          */
         @media (max-width: 700px) {
 
-            /* Language selector adjustments */
+            /* Muestra botones arriba, oculta fondo y muestra la imagen como slide */
             .slide.language-select {
-                height: 100vh;
-                width: 100vw;
-                background: url('images/imagen1.jpg') no-repeat center;
-                justify-content: center;
-                /* Center vertically */
+            background: #f8f8f8 !important;
+            justify-content: flex-start;
+            /* Alinea hacia arriba los elementos, no abajo */
+            align-items: center;
+            position: relative;
+                }
+                .slide.language-select .language-selector {
+                margin: 30px 0 18px 0;
             }
-
-            .language-selector {
-                flex-direction: row;
-                /* Horizontal buttons */
-                gap: 12px;
-                width: 85%;
-                margin-bottom: 24px;
-                justify-content: center;
-                /* Center horizontally */
-            }
-
-            .language-selector button {
-                width: auto;
-                padding: 8px 18px;
-                font-size: 1em;
+            .slide.language-select::after {
+                content: '';
+                display: block;
+                width: 90vw;
+                max-width: 90vw;
+                max-height: 60vh;
+                margin: 0 auto;
                 border-radius: 18px;
+                box-sizing: border-box;
+                background: url('images/imagen1.jpg') no-repeat center center/contain;
+                height: 52vw;
+                min-height: 180px;
             }
 
             /* Slides container: full viewport height with vertical scroll */
